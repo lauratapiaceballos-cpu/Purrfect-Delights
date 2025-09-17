@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purrfect Delights</title>
+<style>
+  body{
+    margin:0;
+    font-family:'Comic Sans MS',cursive;
+    background:linear-gradient(135deg,#ffe6f0,#ffd6eb,#ffe0f5);
+    background-size:300% 300%;
+    animation:fondo 8s ease infinite;
+    color:#4d2b2b;
+    text-align:center;
+  }
+  @keyframes fondo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+  header{
+    padding:20px;
+    background:rgba(255,255,255,0.9);
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    border-bottom: 3px solid #ff4d94;
+  }
+  header h1{
+    margin:0;
+    font-size:2rem;
+    color:#ff4d94;
+    text-shadow:1px 1px #ffe6f0;
+  }
+  nav{
+    background:#ff8fb3;
+    padding:12px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+  }
+  nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 25px;   /* Más separación */
+    font-weight:bold;
+    cursor:pointer;
+    font-size:1.3rem;  /* Más grande */
+    transition: transform 0.2s;
+  }
+  nav a:hover{transform:scale(1.1);}
+  section{padding:40px 20px;}
+  h2{color:#ff4d94;margin-bottom:20px;text-shadow:1px 1px #ffe6f0;}
+  .item{
+    display:inline-block;
+    width:220px;
+    margin:15px;
+    background:rgba(255,255,255,0.95);
+    border-radius:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    padding:15px;
+    transition:transform .3s, box-shadow .3s;
+  }
+  .item:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+  }
+  .item img{max-width:100%;border-radius:15px;}
+  .item button{
+    background:linear-gradient(45deg,#ff6ec4,#ff9a9e);
+    color:white;border:none;
+    padding:10px 15px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+    transition: transform 0.2s;
+    font-size:0.9rem;
+  }
+  .item button:hover{transform:scale(1.05);}
+  .formulario{
+    position: relative;
+    left: -9999px;
+    background:rgba(255,255,255,0.97);
+    padding:25px;
+    border-radius:20px;
+    width:90%;
+    max-width:400px;
+    margin:20px auto;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+    text-align:center;
+  }
+  .formulario img{
+    width:180px;
+    margin-bottom:10px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:15px;
+  }
+  input{
+    padding:7px;
+    font-size:1rem;
+    width:70px;
+    text-align:center;
+    border:2px solid #ff4d94;
+    border-radius:8px;
+    margin:8px 0;
+  }
+  .total{
+    font-weight:bold;
+    font-size:1.1rem;
+    margin:8px 0;
+    transition: opacity 0.3s;
+    opacity:1;
+  }
+  .mensaje{
+    color:#ff4d94;
+    font-size:0.9rem;
+    margin:5px 0;
+    height:18px;
+    transition: opacity 0.3s;
+  }
+  .bienvenida{
+    font-size:0.95rem;
+    color:#ff4d94;
+    margin-bottom:6px;
+  }
+  .frases{
+    font-size:0.95rem;
+    color:#4d2b2b;
+    font-weight:bold;
+    height:24px;
+    margin-bottom:10px;
+    transition: opacity 0.5s;
+  }
+  .acerca{
+    background:rgba(255,255,255,0.95);
+    padding:15px 20px 20px 20px;
+    margin:15px auto;
+    border-radius:20px;
+    width:90%;
+    max-width:500px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    text-align:center;
+    font-size:1rem;
+    line-height:1.4;
+  }
+  #contacto{
+    padding:15px 15px 25px 15px;
+    margin:10px auto;
+    text-align:center;
+  }
+  footer{
+    background:rgba(255,255,255,0.9);
+    padding:15px;
+    color:#a44;
+    border-top:3px solid #ff4d94;
+  }
+  .btnVolver, .comprarBtn{
+    background:#ff8fb3;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:10px;
+    font-weight:bold;
+    transition: transform 0.2s;
+    font-size:0.9rem;
+  }
+  .btnVolver:hover,.comprarBtn:hover{transform:scale(1.05);}
+  @keyframes flotar {0% { transform: translateY(0px); }50% { transform: translateY(-15px); }100% { transform: translateY(0px); }}
+  .gatito{
+    width:650px;
+    height:700px;
+    display:block;
+    margin:0 auto 20px auto;
+    animation: flotar 2s ease-in-out infinite;
+  }
+  .carrito{
+    background:rgba(255,255,255,0.95);
+    padding:12px 15px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    margin-bottom:10px;
+    text-align:center;
+    position: sticky;
+    top:20px;
+    z-index:999;
+  }
+  .carrito ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+  .carrito li{
+    margin:4px 0;
+  }
+  .eliminarBtn{
+    background:red;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:2px 6px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-left:5px;
+  }
+  .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color: rgba(0,0,0,0.5);}
+  .modal-contenido{background:#fff;margin:15% auto;padding:25px;border-radius:20px;width:90%;max-width:400px;text-align:center;}
+  .cerrar{color:#aaa;float:right;font-size:28px;font-weight:bold;cursor:pointer;}
+  .cerrar:hover{color:#000;}
+
+  /* Sección de recetas */
+  .recetas{
+    background:rgba(255,255,255,0.95);
+    padding:20px;
+    border-radius:20px;
+    margin:20px auto;
+    width:90%;
+    max-width:600px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    text-align:left;
+    font-size:1rem;
+    line-height:1.5;
+  }
+  .recetas h3{
+    color:#ff4d94;
+    margin-bottom:8px;
+    text-shadow:1px 1px #ffe6f0;
+  }
+
+  /* Media queries */
+  @media screen and (max-width:768px){
+    .gatito{width:90%; height:auto; max-height:500px;}
+    .item{width:45%; margin:10px;}
+    .formulario{width:95%; padding:15px;}
+    nav a{margin:0 15px; font-size:1.1rem;}
+    .carrito{position:fixed; bottom:10px; right:10px; width:80%; max-width:300px;}
+  }
+  @media screen and (max-width:480px){
+    .item{width:90%; margin:10px auto;}
+    nav a{display:block; margin:5px 0;}
+    .gatito{height:auto; width:90%;}
+    .carrito{width:90%; right:5%; bottom:10px;}
+  }
+</style>
+<script>
+let maxUnidades = 40;
+let frases = [
+  "Un brownie siempre es una buena idea 🍫💖",
+  "Galletitas + sonrisas = día perfecto 🍪😊",
+  "Endulza tu tarde con algo delicioso 🧁✨",
+  "Cada bocado cuenta… ¡de felicidad! 💕🍫",
+  "Dulces que hacen latir tu corazón más rápido 💖🍪",
+  "Mini-brownies, grandes sonrisas 😋🍫",
+  "Una galleta al día mantiene la tristeza lejos 🍪✨",
+  "Siente el amor en cada mordida 💕🧁",
+  "Dulces momentos, recuerdos felices 💖🍫",
+  "Comparte un dulce, comparte alegría 🍪😊"
+];
+let indice = 0;
+let carrito = [];
+
+window.onload = function() {
+  const carritoGuardado = localStorage.getItem('carrito');
+  if(carritoGuardado){
+    carrito = JSON.parse(carritoGuardado);
+    actualizarCarrito();
+  }
+}
+
+setInterval(()=>{
+  const elem = document.getElementById('frasesBienvenida');
+  elem.style.opacity = 0;
+  setTimeout(()=>{
+    elem.textContent = frases[indice];
+    elem.style.opacity = 1;
+    indice = (indice + 1) % frases.length;
+  },500);
+},10000);
+
+function mostrar(tipo){
+  document.getElementById('gatito').style.display='none';
+  const formulario = document.querySelector('#pedido .formulario');
+  formulario.style.left = '0';
+  const titulo = document.getElementById('tituloPedido');
+  const precio = document.getElementById('precio');
+  const cantidad = document.getElementById('cantidad');
+  const img = document.getElementById('imgProducto');
+  const mensaje = document.getElementById('mensaje');
+  const bienvenida = document.getElementById('bienvenida');
+
+  cantidad.value=1;
+  mensaje.textContent="";
+  bienvenida.style.display = 'none';
+
+  if(tipo==='brownie'){
+    titulo.innerHTML="🍫 Pedir Mini-Brownies";
+    precio.textContent="Precio: $2.000 c/u";
+    document.getElementById('precioUnit').value=2000;
+    cantidad.max = 40;
+    maxUnidades = 40;
+    img.src="https://tse3.mm.bing.net/th/id/OIP.g5aI707nV0gdE2WFcWmF7AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3";
+  } else {
+    titulo.innerHTML="🍪 Pedir Bolsita de Galletitas";
+    precio.textContent="Precio: $2.500 por bolsa (5 unidades)";
+    document.getElementById('precioUnit').value=2500;
+    cantidad.max = 20;
+    maxUnidades = 20;
+    img.src="https://cdn-icons-png.flaticon.com/512/1047/1047711.png";
+  }
+  actualizarTotal();
+  formulario.scrollIntoView({behavior: 'smooth'});
+}
+
+function actualizarTotal(){
+  const totalElem = document.getElementById('total');
+  const mensaje = document.getElementById('mensaje');
+  const p = parseInt(document.getElementById('precioUnit').value)||0;
+  let u = parseInt(document.getElementById('cantidad').value)||1;
+
+  if(u > maxUnidades){
+    mensaje.style.opacity = 1;
+    mensaje.textContent = `⚠️ ¡Solo puedes pedir un máximo de ${maxUnidades} unidades!`;
+    u = maxUnidades;
+    document.getElementById('cantidad').value = u;
+  } else {
+    mensaje.style.opacity = 0;
+    mensaje.textContent = "";
+  }
+
+  totalElem.style.opacity = 0;
+  setTimeout(()=> {
+    totalElem.textContent = `💰 Costo: $${p*u} COP`;
+    totalElem.style.opacity = 1;
+  },200);
+}
+
+function volver(){
+  const formulario = document.querySelector('#pedido .formulario');
+  formulario.style.left = '-9999px';
+  document.getElementById('gatito').style.display='block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function añadirAlCarrito(){
+  const titulo = document.getElementById('tituloPedido').textContent;
+  const precioUnit = parseInt(document.getElementById('precioUnit').value);
+  const cantidad = parseInt(document.getElementById('cantidad').value);
+
+  const producto = {titulo, precioUnit, cantidad};
+  carrito.push(producto);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarCarrito();
+}
+
+function actualizarCarrito(){
+  const lista = document.getElementById('listaCarrito');
+  const totalCarrito = document.getElementById('totalCarrito');
+  lista.innerHTML="";
+  let total =0;
+  carrito.forEach((p,i)=>{
+    const li = document.createElement('li');
+    li.innerHTML=`${p.titulo} x${p.cantidad} - $${p.precioUnit*p.cantidad} <button class="eliminarBtn" onclick="eliminar(${i})">X</button>`;
+    lista.appendChild(li);
+    total += p.precioUnit*p.cantidad;
+  });
+  totalCarrito.textContent = `💰 Total carrito: $${total} COP`;
+  document.getElementById('btnComprar').style.display = carrito.length>0?'inline-block':'none';
+}
+
+function eliminar(index){
+  carrito.splice(index,1);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarCarrito();
+}
+
+function comprarTodo(){
+  document.getElementById('modalPago').style.display='block';
+}
+
+function cerrarModal(){
+  document.getElementById('modalPago').style.display='none';
+}
+</script>
+<body>
+
+<header>
+  <h1>🍫 🐾Purrfect Delights🐾 🍪</h1>
+  <p>¡Delicias hechas con amor para ti! 💖</p>
+</header>
+
+<nav>
+  <a onclick="volver()">Productos</a>
+  <a href="#acerca">Acerca de mí</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<section id="catalogo">
+  <h2>Nuestros productos</h2>
+  <div class="item">
+    <img src="https://tse3.mm.bing.net/th/id/OIP.g5aI707nV0gdE2WFcWmF7AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Brownie">
+    <h3>Mini-Brownies</h3>
+    <p>Suaves, chocolatosos y llenos de sabor.<br>💰 $2.000 c/u</p>
+    <button onclick="mostrar('brownie')">¡Quiero brownies!</button>
+  </div>
+  <div class="item">
+    <img src="https://cdn-icons-png.flaticon.com/512/1047/1047711.png" alt="Galletitas">
+    <h3>Bolsitas de Galletitas</h3>
+    <p>5 mini galletas por bolsita.<br>💰 $2.500</p>
+    <button onclick="mostrar('galleta')">¡Quiero galletitas!</button>
+  </div>
+</section>
+
+<!-- Sección de recetas -->
+<section id="recetas">
+  <h2>🍪 Recetas Facilitas</h2>
+  <div class="recetas">
+    <h3>Mini Brownies Rápidos</h3>
+    <p>Mezcla 1 taza de harina, 1/2 taza de cacao, 1/2 taza de azúcar, 1/4 taza de aceite y 2 huevos. Hornea 15-20 min a 180°C. ¡Listo!</p>
+    <h3>Galletitas de Mantequilla</h3>
+    <p>Mezcla 1 taza de mantequilla, 1/2 taza de azúcar y 2 tazas de harina. Forma bolitas y hornea 12 min a 175°C.</p>
+  </div>
+</section>
+
+<section id="pedido">
+  <img id="gatito" class="gatito" src="https://i.postimg.cc/vTKHBRm7/gato-chef-blanco-de-ojos-azules-con-1-removebg-preview.png" alt="Gatito Chef">
+
+  <div class="carrito">
+    <h3>🛒 Carrito de compras</h3>
+    <ul id="listaCarrito"></ul>
+    <p id="totalCarrito">💰 Total carrito: $0 COP</p>
+    <button id="btnComprar" class="comprarBtn" onclick="comprarTodo()" style="display:none;">Comprar todo 💳</button>
+  </div>
+
+  <div class="formulario">
+    <div id="bienvenida" class="bienvenida">✨ Selecciona un producto arriba para hacer tu pedido y ver el costo 💖🍪</div>
+    <div id="frasesBienvenida" class="frases">Un brownie siempre es una buena idea 🍫💖</div>
+    <img id="imgProducto" src="" alt="" >
+    <h2 id="tituloPedido"></h2>
+    <p id="precio"></p>
+    <label>Unidades a pedir (máx según producto):</label><br>
+    <input type="number" id="cantidad" min="1" value="1" oninput="actualizarTotal()">
+    <input type="hidden" id="precioUnit" value="">
+    <p class="total" id="total">💰 Costo: $0 COP</p>
+    <p class="mensaje" id="mensaje"></p>
+    <p>💳 Pago vía Nequi: <strong>3137401568</strong></p>
+    <p>📱 WhatsApp: <strong>+57 3022919415</strong></p>
+    <button class="btnVolver" onclick="volver()">⬅ Volver al catálogo</button>
+    <button class="comprarBtn" onclick="añadirAlCarrito()">Añadir al carrito 🛒</button>
+  </div>
+</section>
+
+<!-- Modal de pago -->
+<div id="modalPago" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <h2>💳 Pagar con Nequi</h2>
+    <p>Envía el total de tu carrito al número:</p>
+    <p><strong>3137401568</strong></p>
+    <p>Después de hacer el pago, escríbenos por WhatsApp para confirmar tu pedido.</p>
+    <button onclick="cerrarModal()" class="comprarBtn">Cerrar</button>
+  </div>
+</div>
+
+<section id="acerca">
+  <h2>👩‍🍳 Acerca de mí</h2>
+  <div class="acerca">
+    <p>
+      Hola! Me llamo Laura y tengo 12 años. Soy una chica emprendedora y deportista de alto rendimiento en natación. ¡También soy una apasionada por los brownies y las galletas! Me encanta crear nuevas recetas, compartir mis dulces con la familia y amigos, y siempre busco darle un toque especial a cada postre. Cuando no estoy entrenando o horneando, me gusta pasar tiempo con mi gato Simba y con mi hermana menor. 🐾
+    </p>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>📞 Contacto</h2>
+  <p>WhatsApp: <strong>+57 3022919415</strong></p>
+  <p>Correo: <em>(próximamente)</em></p>
+</section>
+
+<footer>
+  <p>© 2025 Mini Brownies & Galletitas | Diseñado con 💕</p>
+</footer>
+
+</body>
+</html>
+
