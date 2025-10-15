@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ¡NOMBRE CORREGIDO! -->
+    <title>Purrfect Delights</title> 
+    <!-- Incluye Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="https://i.postimg.cc/7LDVWH1f/Logo-reposter-a-y-postres-artesanales-ilustrativo-marron-1.png" type="image/png">
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'pink-sweet': '#ff4d94',
+              'brownie-dark': '#4d2b2b',
+              'bg-light': '#fff8f9',
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              display: ['"Comic Sans MS"', 'cursive', 'sans-serif'], 
+            },
+          }
+        }
+      }
+    </script>
+
+    <!-- Estilos personalizados -->
+    <style>
+      body {
+        background: linear-gradient(135deg, #ffe6f0, #ffd6eb, #ffe0f5);
+        background-size: 300% 300%;
+        animation: fondo 8s ease infinite;
+        color: #4d2b2b;
+        font-family: 'Inter', sans-serif;
+      }
+      @keyframes fondo {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes flotar {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0px); }
+      }
+      .animate-flotar {
+        animation: flotar 3s ease-in-out infinite;
+      }
+      .modal {
+        transition: opacity 0.3s ease-in-out;
+      }
+      .star-rating {
+        color: #ffc107;
+        font-size: 1.5rem;
+      }
+    </style>
+
+    <!-- Enlaces de navegación y función volver() -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.add(
+            'text-white', 'hover:text-pink-100', 'px-4', 'py-2', 'mx-1', 'sm:mx-3',
+            'font-semibold', 'text-sm', 'sm:text-lg', 'cursor-pointer', 'transition',
+            'duration-300', 'transform', 'hover:scale-105', 'rounded-lg'
+          );
+        });
+      });
+
+      // ✅ Nueva función volver() para mostrar el catálogo de productos
+      function volver() {
+        document.getElementById('formulario-container').classList.add('hidden');
+        document.getElementById('gatito-container').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    </script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="text-center py-6 bg-white shadow-md">
+  <div class="flex flex-col items-center justify-center">
+    <h1 class="text-4xl sm:text-5xl font-bold flex items-center justify-center gap-2" style="color:#ff4d94;">
+      🐾 <span class="text-5xl font-bold text-#ff4d94-600">Purrfect Delights</span> 🍪
+    </h1>
+    <p class="text-brownie-dark text-lg sm:text-xl mt-2">
+      ¡Delicias gatunas hechas con amor para ti! 💖
+    </p>
+  </div>
+</header>
+
+
+
+<!-- NAVIGATION BAR -->
+<nav class="bg-pink-sweet shadow-lg sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-center py-3">
+        <a onclick="volver()" class="nav-link">
+            Productos
+        </a>
+        <a href="#promociones" class="nav-link">
+            Ofertas
+        </a>
+        <a href="#testimonios" class="nav-link">
+            Testimonios
+        </a>
+        <a href="#envios" class="nav-link">
+            Envíos
+        </a>
+        <a href="#faq" class="nav-link">
+            FAQ
+        </a>
+        <a href="#acerca" class="nav-link">
+            Acerca de mi
+        </a>
+        <a href="#contacto" class="nav-link">
+            Contacto
+        </a>
+    </div>
+</nav>
+
+<!-- Estilo para enlaces de navegación -->
+<script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.add('text-white', 'hover:text-pink-100', 'px-4', 'py-2', 'mx-1', 'sm:mx-3', 'font-semibold', 'text-sm', 'sm:text-lg', 'cursor-pointer', 'transition', 'duration-300', 'transform', 'hover:scale-105', 'rounded-lg');
+    });
+</script>
+
+<!-- SECCIÓN: HERO SECTION (Banner de Bienvenida) -->
+<section id="hero" class="py-16 px-4 max-w-7xl mx-auto bg-pink-50/50 rounded-b-3xl shadow-xl mb-12">
+    <div class="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+        <div class="md:w-1/2">
+            <h2 class="text-5xl sm:text-6xl font-extrabold text-pink-sweet leading-tight mb-4">
+                ¡Los Brownies y las galletas más gatunas de Cali! 🐈
+            </h2>
+            <p class="text-xl text-brownie-dark mb-6">
+                Repostería 100% casera y artesanal hecha por mí con la supervisión de mis michis pasteleros, Simba y Milo.
+                Pide hoy y recibe mañana para tu tarde de series. 🥳
+            </p>
+            <a href="#catalogo" class="inline-block bg-pink-sweet text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg border-2 border-white">
+                ¡Quiero ver los productos! 🤤
+            </a>
+        </div>
+        <div class="md:w-1/3 mt-8 md:mt-0 flex justify-center">
+            <!-- Gatito Chef de fondo sin animación -->
+            <img class="w-48 h-auto opacity-80 animate-flotar" 
+                 src="https://i.postimg.cc/vTKHBRm7/gato-chef-blanco-de-ojos-azules-con-1-removebg-preview.png" alt="Gatito Chef">
+        </div>
+    </div>
+</section>
+
+
+<!-- PRODUCTS CATALOGUE -->
+<section id="catalogo" class="py-12 px-4 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-pink-sweet mb-8 text-center border-b-2 border-pink-300 pb-3">
+        Nuestro catálogo miau-tastico 
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+
+        <!-- Producto 1: Brownie normal -->
+        <div class="item bg-white/95 p-5 rounded-3xl shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-pink-200 w-full max-w-xs text-brownie-dark">
+            <img src="https://i.postimg.cc/Xq0YPw60/brownie-normal-sin-chips-de-colores.jpg" alt="Brownie normal" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-md">
+            <h3 class="text-xl font-bold text-pink-sweet mb-1">🍫 Brownie Normal</h3>
+            <p class="text-sm mb-3">Súper suaves, chocolatosos y deliciosos</p>
+            <p class="text-lg font-extrabold text-brownie-dark mb-4">💰 $3000 c/u</p>
+            <button onclick="mostrar('brownieNormal')" class="w-full bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-4 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+               Comprar
+            </button>
+        </div>
+
+        <!-- Producto 2: Brownie con chispas de colores -->
+        <div class="item bg-white/95 p-5 rounded-3xl shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-pink-200 w-full max-w-xs text-brownie-dark">
+            <img src="https://i.postimg.cc/131QP98y/brownie-animado-con-chips-de-colores-peque-os.jpg" alt="Brownie con chispas de colores" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-md">
+            <h3 class="text-xl font-bold text-pink-sweet mb-1">🌈 Brownie Arcoíris</h3>
+            <p class="text-sm mb-3"> Lleno de chispas de colores, perfecto para cualquier ocasión</p>
+            <p class="text-lg font-extrabold text-brownie-dark mb-4">💰 $3200 c/u</p>
+            <button onclick="mostrar('brownieColores')" class="w-full bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-4 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+                Comprar
+            </button>
+        </div>
+
+        <!-- Producto 3: Brownie con chips de chocolate -->
+        <div class="item bg-white/95 p-5 rounded-3xl shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-pink-200 w-full max-w-xs text-brownie-dark">
+            <img src="https://i.postimg.cc/9Mbk3hvF/un-brownie-con-chips-de-chocolate.jpg" alt="Brownie con chips de chocolate" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-md">
+            <h3 class="text-xl font-bold text-pink-sweet mb-1">🍫 Brownie con chips de chocolate</h3>
+            <p class="text-sm mb-3">Para los que aman el chocolate</p>
+            <p class="text-lg font-extrabold text-brownie-dark mb-4">💰 $3200 c/u</p>
+            <button onclick="mostrar('brownieChoco')" class="w-full bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-4 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+                Comprar
+            </button>
+        </div>
+
+        <!-- Producto 4: Brownie mix -->
+        <div class="item bg-white/95 p-5 rounded-3xl shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-pink-200 w-full max-w-xs text-brownie-dark">
+            <img src="https://i.postimg.cc/m2LH2GKW/brownie-con-chips-de-chocolate-y-pepitas.jpg" alt="Brownie mix" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-md">
+            <h3 class="text-xl font-bold text-pink-sweet mb-1">✨ Brownie Mix</h3>
+            <p class="text-sm mb-3">Brownie con chips de chocolate y pepitas de colores</p>
+            <p class="text-lg font-extrabold text-brownie-dark mb-4">💰 $3500 c/u</p>
+            <button onclick="mostrar('brownieMix')" class="w-full bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-4 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+                Comprar
+            </button>
+        </div>
+
+        <!-- Producto 5: Miaulletas normales -->
+        <div class="item bg-white/95 p-5 rounded-3xl shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-pink-200 w-full max-w-xs text-brownie-dark">
+            <img src="https://i.postimg.cc/9fRx89Bb/galleta-circular-con-chips-de-chocolate-en.jpg" alt="Miaulletas normales" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-md">
+            <h3 class="text-xl font-bold text-pink-sweet mb-1">🍪 Miaulletas Clásicas x5</h3>
+            <p class="text-sm mb-3">Mini galletitas de mantequilla x5 unidades.</p>
+            <p class="text-lg font-extrabold text-brownie-dark mb-4">💰 $3500 por bolsa</p>
+            <button onclick="mostrar('miaulletasNormales')" class="w-full bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-4 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+                Comprar
+            </button>
+        </div>
+
+        <!-- Producto 6: Miaulletas mix -->
+        <div class="item bg-white/95 p-5 rounded-3xl shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-pink-200 w-full max-w-xs text-brownie-dark">
+            <img src="https://i.postimg.cc/Z5XjXRnL/solo-la-cabeza-de-una-galleta-en.jpg" alt="Miaulletas mix" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-md">
+            <h3 class="text-xl font-bold text-pink-sweet mb-1">🐾 Miaulletas mix x5</h3>
+            <p class="text-sm mb-3">Paquete de galletitas x5 unidades con forma de cabecita de gato.</p>
+            <p class="text-lg font-extrabold text-brownie-dark mb-4">💰 $3700 por bolsa</p>
+            <button onclick="mostrar('miaulletasMix')" class="w-full bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-4 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+                Comprar
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- SECCIÓN: PROMOCIONES/OFERTAS ESPECIALES -->
+<section id="promociones" class="py-12 px-4 bg-pink-100/50">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-pink-sweet mb-8 text-center border-b-2 border-pink-300 pb-3">
+            🎉 ¡Súper Promos de la Semana! 🎉
+        </h2>
+        <div class="bg-white/95 p-8 rounded-3xl shadow-2xl text-brownie-dark">
+            <div id="oferta-carrusel" class="text-center transition-opacity duration-700">
+                <!-- Contenido dinámico de las ofertas -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- SECCIÓN: TESTIMONIOS Y CALIFICACIONES -->
+<section id="testimonios" class="py-12 px-4 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-pink-sweet mb-8 text-center border-b-2 border-pink-300 pb-3">
+        🌟 Testimonios 🌟
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Testimonio 1 -->
+        <div class="bg-white/95 p-6 rounded-2xl shadow-lg border-2 border-pink-200 hover:shadow-xl transition duration-300">
+            <div class="star-rating mb-2">★★★★★</div>
+            <p class="italic text-gray-700">"¡Son demasiado ricos! Pedí el Brownie Mix y es súper húmedo, delicioso y perfecto para después de el cole. Se nota que están hechos con mucho amor. Le doy cinco estrellas bien merecidas"</p>
+            <p class="font-bold text-pink-sweet mt-3">— Sofía M.</p>
+        </div>
+        
+        <!-- Testimonio 2 -->
+        <div class="bg-white/95 p-6 rounded-2xl shadow-lg border-2 border-pink-200 hover:shadow-xl transition duration-300">
+            <div class="star-rating mb-2">★★★★★</div>
+            <p class="italic text-gray-700">"Las Miaulletas son adorables, la forma de gatito es lo mejor! A mi hermana y a mí nos encantaron para la tarde de películas"</p>
+            <p class="font-bold text-pink-sweet mt-3">— Carlos R.</p>
+        </div>
+        
+        <!-- Testimonio 3 -->
+        <div class="bg-white/95 p-6 rounded-2xl shadow-lg border-2 border-pink-200 hover:shadow-xl transition duration-300">
+            <div class="star-rating mb-2">★★★★☆</div>
+            <p class="italic text-gray-700">"El pedido llegó súper rápido y bien empacado. El brownie normal es muy delicioso, compré 10 unidades para empacarles en el descanso a mis dos hijos. Lau, podrías hacer uno con Nutella? Sería increíble"</p>
+            <p class="font-bold text-pink-sweet mt-3">— Andrea 	L.</p>
+        </div>
+        
+    </div>
+</section>
+
+
+<!-- ORDER AND CART SECTION -->
+<section id="pedido" class="max-w-6xl mx-auto py-10 px-4 flex flex-col md:flex-row gap-8 items-start justify-center">
+
+    <!-- Shopping Cart (Visible always) -->
+    <div class="carrito w-full md:w-1/3 bg-white/95 p-6 rounded-3xl shadow-2xl text-brownie-dark order-2 md:order-1">
+        <h3 class="text-2xl font-bold text-pink-sweet mb-4">🛒 Carrito de compras</h3>
+        <ul id="listaCarrito" class="list-none p-0 mb-4 space-y-2 text-left">
+            <!-- Lista de productos añadidos -->
+        </ul>
+        <p id="totalCarrito" class="text-xl font-extrabold mt-4 pt-2 border-t-2 border-pink-200">
+            💰 Total a pagar: $0 COP
+        </p>
+        <!-- Cambiamos la función a comprarTodo() para que abra el modal de revisión -->
+        <button id="btnComprar" class="w-full bg-pink-sweet text-white font-bold py-3 px-4 mt-4 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl" onclick="comprarTodo()" style="display:none;">
+            Revisar y Enviar Pedido 📲
+        </button>
+    </div>
+
+    <!-- Gatito Chef Hero (Visible by default, hidden when form is active) -->
+    <div id="gatito-container" class="w-full md:w-2/3 flex flex-col items-center justify-center transition-opacity duration-500 order-1 md:order-2">
+        <div class="text-center p-6 bg-white/95 rounded-3xl shadow-2xl mb-6 w-full max-w-md">
+            <div id="bienvenida" class="text-lg font-semibold text-pink-sweet mb-2">
+                ✨ ¡Escoge tu dulce favorito de la lista de arriba! 💖🍪
+            </div>
+            <div id="frasesBienvenida" class="frases text-brownie-dark font-extrabold h-6 transition-opacity duration-500">
+                Un brownie siempre es una buena idea 🍫💖
+            </div>
+        </div>
+        <!-- Usamos un mix de Simba y Milo en el chef -->
+        <img id="gatito" class="w-full max-w-sm md:max-w-md animate-flotar h-auto" 
+             src="https://i.postimg.cc/vTKHBRm7/gato-chef-blanco-de-ojos-azules-con-1-removebg-preview.png" alt="Simba y Milo, los chefs">
+    </div>
+
+
+    <!-- Order Form (Hidden by default, shown when a product is clicked) -->
+    <div id="formulario-container" class="w-full md:w-2/3 transition-all duration-500 hidden order-1 md:order-2">
+        <div class="formulario bg-white/95 p-8 rounded-3xl shadow-2xl text-center text-brownie-dark">
+            <img id="imgProducto" src="" alt="" class="w-48 h-48 object-cover mx-auto mb-4 rounded-2xl shadow-md">
+            <h2 id="tituloPedido" class="text-3xl font-bold text-pink-sweet mb-2"></h2>
+            <p id="precio" class="text-lg font-medium mb-4"></p>
+            
+            <label class="block text-lg font-semibold mb-2">¿Cuántos quieres?:</label>
+            <input type="number" id="cantidad" min="1" value="1" oninput="actualizarTotal()" 
+                   class="p-2 text-xl w-24 text-center border-4 border-pink-sweet rounded-xl focus:border-pink-700 transition duration-200">
+            <input type="hidden" id="precioUnit" value="">
+            
+            <p class="total text-2xl font-extrabold my-4 text-brownie-dark transition-opacity duration-200" id="total">
+                💰 Costo: $0 COP
+            </p>
+            <p class="mensaje text-sm h-5 text-red-500 transition-opacity duration-300" id="mensaje"></p>
+            
+            <div class="mt-6 space-y-3">
+                <p class="text-md">💳 Pago por Nequi: <strong>3137401568</strong></p>
+                <p class="text-md">📱 Whattsapp: <strong>+57 3137401568</strong></p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 mt-6">
+                <button class="btnVolver bg-pink-sweet text-white font-bold py-3 px-6 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg" onclick="volver()">
+                    ⬅ Volver al menú
+                </button>
+                <button class="comprarBtn bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-6 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl" onclick="añadirAlCarrito()">
+                    ¡Añadir a mi carrito! 🛒
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN: INFORMACIÓN DE ENVÍOS Y ENTREGAS -->
+<section id="envios" class="py-12 px-4 bg-pink-100/50">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-pink-sweet mb-8 text-center border-b-2 border-pink-300 pb-3">
+            🚚 ¿Cómo te lo entrego? 🐾
+        </h2>
+        <div class="bg-white/95 p-8 rounded-3xl shadow-2xl text-brownie-dark text-center">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="p-4 border-r sm:border-r-2 border-pink-200">
+                    <span class="text-4xl block mb-2">📍</span>
+                    <h3 class="font-bold text-xl text-pink-sweet">Envios</h3>
+                    <p class="text-sm">Cada pedido es preparado con dedicación y el toque especial de mis michis.
+Tus postres llegarán frescos, seguros y purrfectos hasta tu puerta.</p>
+                </div>
+                <div class="p-4 border-r sm:border-r-2 border-pink-200">
+                    <span class="text-4xl block mb-2">⏰</span>
+                    <h3 class="font-bold text-xl text-pink-sweet">Tiempo de entrega</h3>
+                    <p class="text-sm">Tu pedido llega en aproximadamente de 3 a 5 dias (Dependiendo de las unidades, claramente).</p>
+                </div>
+                <div class="p-4">
+                    <span class="text-4xl block mb-2">💰</span>
+                    <h3 class="font-bold text-xl text-pink-sweet">Costo de envío</h3>
+                    <p class="text-sm">El costo del envío lo calculamos por WhatsApp. ¡Te aviso cuánto es cuando me digas dónde te lo entrego!</p>
+                </div>
+            </div>
+            <p class="mt-6 text-sm italic text-gray-600">Recuerda que todos los pedidos son por WhatsApp para que todo quede claro y no hayan confusiones 😉</p>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN: PREGUNTAS FRECUENTES (FAQ) -->
+<section id="faq" class="py-12 px-4 max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold text-pink-sweet mb-8 text-center border-b-2 border-pink-300 pb-3">
+        ❓ Preguntas que me hacen mucho 😜
+    </h2>
+    <div class="bg-white/95 p-8 rounded-3xl shadow-2xl text-brownie-dark space-y-4">
+        <!-- FAQ 1 -->
+        <details class="p-4 rounded-xl border border-pink-200 hover:bg-pink-50/70 transition duration-300" open>
+            <summary class="font-bold text-pink-sweet cursor-pointer text-lg">¿Cómo te pago?</summary>
+            <p class="pt-2 text-gray-700">¡Súper fácil! Solo acepto Nequi (por ahora) al número 3137401568. Cuando confirmas el pedido, te muestro el QR de pago.</p>
+        </details>
+        <!-- FAQ 2 -->
+        <details class="p-4 rounded-xl border border-pink-200 hover:bg-pink-50/70 transition duration-300">
+            <summary class="font-bold text-pink-sweet cursor-pointer text-lg">¿Puedo pedir desde otra ciudad?</summary>
+            <p class="pt-2 text-gray-700">Me encantaría hacer entregas a todo el Valle del Cauca, ¡pero no puedo! Por ahora, solo hago entregas en Cali para que los brownies y las miaulletas lleguen súper frescos.</p>
+        </details>
+        <!-- FAQ 3 -->
+        <details class="p-4 rounded-xl border border-pink-200 hover:bg-pink-50/70 transition duration-300">
+            <summary class="font-bold text-pink-sweet cursor-pointer text-lg">¿Cuándo sé que mi pedido ya está listo?</summary>
+            <p class="pt-2 text-gray-700">Tu pedido se confirma cuando me envías la foto del pago por WhatsApp (+57 3137401568) y yo te escribo ¡Listo!</p>
+        </details>
+    </div>
+</section>
+
+<!-- RECIPES SECTION (Para compartir el amor por hornear) -->
+<section id="recetas" class="py-12 px-4 max-w-3xl mx-auto">
+    <h2 class="text-3xl font-bold text-pink-sweet mb-6 text-center border-b-2 border-pink-300 pb-3">
+        🍪 Recetas para hacer cuando se va el internet 🍫
+    </h2>
+    <div class="bg-white/95 p-8 rounded-3xl shadow-2xl text-left text-brownie-dark leading-relaxed">
+        
+        <h3 class="text-2xl font-semibold text-pink-sweet mb-3">La Receta de los Brownies de la Abuela</h3>
+        <p class="mb-5">Mezcla 1 taza de harina, 1/2 taza de cacao en polvo (del bueno), 1/2 taza de azúcar, 1/4 taza de aceite y 2 huevos. ¡Esto es lo más importante! Vierte todo en un molde (con papel antiadherente) y hornea por 15-20 minutos a 180° C. Listo!</p>
+        
+        <h3 class="text-2xl font-semibold text-pink-sweet mb-3">Galletitas de Mantequilla</h3>
+        <p>Necesitas 1 taza de mantequilla (suave), 1/2 taza de azúcar y 2 tazas de harina. Lo revuelves todo muy bien. Forma bolitas pequeñas, aplástalas un poquito y al horno por 12 minutos a 175° C$. ¡Quedan crujientes!</p>
+    </div>
+</section>
+
+<!-- ABOUT ME SECTION -->
+<section id="acerca" class="py-12 px-4 max-w-xl mx-auto">
+    <h2 class="text-3xl font-bold text-pink-sweet mb-6 text-center border-b-2 border-pink-300 pb-3">
+         Acerca de mi 👩🏻‍🍳
+    </h2>
+    <div class="acerca bg-white/95 p-8 rounded-3xl shadow-2xl text-brownie-dark leading-relaxed">
+        <div class="flex items-start space-x-4 mb-4">
+            <img src="https://i.postimg.cc/bvxjMBt5/20251013-124140.jpg" 
+                 alt="Foto de Simba, un gato" 
+                 class="w-20 h-20 object-cover rounded-full shadow-md border-2 border-pink-sweet">
+            <div>
+                <p class="font-bold text-pink-sweet text-xl">Simba 🤍</p>
+                <p class="text-sm italic">Mi gatito mayor, el más comelón y el que más duerme. Él si sabe cuanta canela se necesita!</p>
+            </div>
+        </div>
+        <div class="flex items-start space-x-4 mb-4">
+            <img src="https://i.postimg.cc/bvkzPvKR/20251013-124300.jpg" 
+                 alt="Foto de Milo, otro gato" 
+                 class="w-20 h-20 object-cover rounded-full shadow-md border-2 border-pink-sweet">
+            <div>
+                <p class="font-bold text-pink-sweet text-xl">Milo 🩶</p>
+                <p class="text-sm italic">El supervisor de calidad, mi gatito menor. Si él aprueba la masa, es éxito garantizado</p>
+            </div>
+        </div>
+        <p class="mt-4">
+            ¡Hola! Yo soy Laura y tengo 12 años. Desde que era una niña pequeña, he sido muy emprendedora, y cuando no estoy entrenando para natación (sip, soy deportista), estoy haciendo mis recetas favoritas, que son los brownies y las galletas. Me encanta crear postres, y mis ayudantes favoritos son mis gatos Simba y Milo. Ellos me dan el toque de suerte para que todo quede delicioso :D</p>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contacto" class="py-12 px-4 max-w-2xl mx-auto text-center">
+    <h2 class="text-3xl font-bold text-pink-sweet mb-6 border-b-2 border-pink-300 pb-3">
+        📞 ¡Pide Ya por WhatsApp!
+    </h2>
+    <p class="text-xl font-medium mb-3 text-brownie-dark">Mi WhatsApp es: <strong class="text-pink-sweet">+57 3137401568</strong></p>
+    <p class="text-lg text-gray-700">¡Escríbeme para saber más!.</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white/95 p-6 text-center text-gray-600 border-t-4 border-pink-sweet">
+    <p class="text-sm font-medium">© 2025 Purrfect Delights | Hecho con amor 💕</p>
+</footer>
+
+<!-- MODAL DE REVISIÓN DE PEDIDO (NUEVO) -->
+<div id="modalReview" class="modal fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex items-center justify-center opacity-0 pointer-events-none">
+    <div class="modal-contenido bg-white p-8 rounded-2xl shadow-2xl w-11/12 max-w-lg text-center transform transition-transform duration-300 scale-95">
+        <h2 class="text-3xl font-bold text-brownie-dark mb-4">✨ ¡Revisa tu carrito! ✨</h2>
+        <p class="mb-4 text-gray-700 font-semibold">Mira bien que no se te escape nada antes de mandar el mensaje a mi WhatsApp:</p>
+        
+        <div class="border border-pink-200 rounded-xl p-4 mb-4 bg-pink-50/50 max-h-60 overflow-y-auto">
+            <ul id="listaReview" class="list-none p-0 mb-2 space-y-2 text-left text-lg text-brownie-dark font-medium">
+                <!-- Se llena dinámicamente -->
+            </ul>
+        </div>
+
+        <p id="totalReview" class="text-2xl font-extrabold mt-4 pt-2 border-t-4 border-pink-sweet text-pink-sweet">
+            <!-- Se llena dinámicamente -->
+        </p>
+
+        <p class="text-sm text-gray-600 my-4">¡Recuerda! Después de enviar el mensaje, te mostraré el QR de Nequi. </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 mt-6">
+            <button onclick="cerrarModalReview()" class="bg-gray-300 text-brownie-dark font-bold py-3 px-6 rounded-xl transition duration-300 hover:bg-gray-400 transform hover:scale-105">
+                Quiero cambiar algo
+            </button>
+            <button onclick="enviarPedidoWhatsApp()" class="bg-gradient-to-r from-pink-500 to-rose-400 text-white font-bold py-3 px-6 rounded-xl transition duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                ¡Confirmar y enviar a WhatsApp! 📲
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE PAGO (Activado DESPUÉS de WhatsApp) -->
+<div id="modalPago" class="modal fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex items-center justify-center opacity-0 pointer-events-none">
+    <div class="modal-contenido bg-white p-8 rounded-2xl shadow-2xl w-11/12 max-w-sm text-center transform transition-transform duration-300 scale-95">
+        <span class="cerrar text-gray-500 text-3xl font-bold absolute top-2 right-4 cursor-pointer hover:text-gray-900" onclick="cerrarModalPago()">&times;</span>
+        <h2 class="text-3xl font-bold text-pink-sweet mb-4">💳 Paga por Nequi</h2>
+        <p class="mb-4 text-brownie-dark">Puedes escanear este QR o usar mi número </p>
+        <img src="https://i.postimg.cc/Gm562qfb/Captura-de-pantalla-19-9-2025-12014-mail-google-com.jpg"
+             alt="QR de pago Nequi"
+             class="w-48 h-48 mx-auto rounded-xl shadow-lg mb-4">
+        <p class="text-lg font-semibold mb-4">💳 Mi Nequi: <strong>3137401568</strong></p>
+        <p class="text-sm text-gray-600 mb-6">Después de pagar, mándame la foto del comprobante por WhatsApp Así ya te confirmo la hora y la dirección de envío. Gracias por tu compra, y espero que lo disfrutes! 🥳</p>
+        <button onclick="cerrarModalPago()" class="w-full bg-pink-sweet text-white font-bold py-3 px-4 rounded-xl transition duration-300 hover:bg-pink-600">
+            Ok
+        </button>
+    </div>
+</div>
+
+<!-- JAVASCRIPT LOGIC (Actualizado para las nuevas frases y productos) -->
+<script>
+    /* ---------- Datos y estado ---------- */
+    let maxUnidades = 40;
+    // Frases con el toque de niña de 12 años
+    let frases = [
+      "¡Qué día tan bonito para un brownie! 🍫💖",
+      "Galletitas y TikTok = día perfecto 🍪😊",
+      "Endulza tu tarde con algo ¡súper delicioso! 🧁✨",
+      "Cada bocado tiene la magia de mis michis 🐾💕",
+      "Mis dulces hacen latir tu corazón más rápido 💖🍪",
+      "Mini-brownies, grandes sonrisas ¡Garantizado! 😋🍫",
+      "Una Miaulleta al día te quita el aburrimiento 🍪✨",
+      "Siente el amor de un gato en cada mordida 💕🧁",
+      "Si comes postre, la vida es más cool 💖🍫",
+      "¡Comparte un dulce con tu BFF! 🍪😊"
+    ];
+    let ofertas = [
+        { 
+            titulo: "¡Súper Promo del Finde! 🥳", 
+            descripcion: "Lleva 5 Brownies Simples y solo pagas 4. Te ahorras para el helado",
+            vigencia: "Válido solo fines de semana."
+        },
+        { 
+            titulo: "El Combo de Milo 🐾", 
+            descripcion: "1 Brownie Mix + 1 bolsa de Miaulletas ¡Con orejitas! por solo $7200 COP.",
+            vigencia: "Válido toda la semana."
+        },
+        { 
+            titulo: "10% de Descuento TOP 🏷️", 
+            descripcion: "Si tu pedido es de más de $30.000 COP, te doy 10% de descuento.",
+            vigencia: "Pregúntame en WhatsApp por esta promo."
+        }
+    ];
+    let indiceFrase = 0;
+    let indiceOferta = 0;
+    let carrito = [];
+    const NUMERO_WHATSAPP = "3137401568"; // Variable constante
+
+    /* ---------- Carga inicial ---------- */
+    window.onload = function() {
+        // Inicializa el estado del carrito al cargar la página
+        const carritoGuardado = localStorage.getItem('carrito');
+        if (carritoGuardado) {
+            carrito = JSON.parse(carritoGuardado);
+            actualizarCarrito();
+        }
+        actualizarOferta(); // Carga la primera oferta
+    }
+
+    /* ---------- Frases rotativas ---------- */
+    setInterval(() => {
+        const elem = document.getElementById('frasesBienvenida');
+        if (!elem) return;
+        elem.classList.add('opacity-0');
+        setTimeout(() => {
+            elem.textContent = frases[indiceFrase];
+            elem.classList.remove('opacity-0');
+            indiceFrase = (indiceFrase + 1) % frases.length;
+        }, 500);
+    }, 10000);
+
+    /* ---------- Carrusel de Ofertas ---------- */
+    function actualizarOferta(){
+        const carrusel = document.getElementById('oferta-carrusel');
+        const oferta = ofertas[indiceOferta];
+        
+        carrusel.classList.add('opacity-0'); // Oculta suavemente
+        setTimeout(() => {
+            carrusel.innerHTML = `
+                <h3 class="text-3xl font-extrabold text-pink-sweet mb-3">${oferta.titulo}</h3>
+                <p class="text-xl mb-4 text-brownie-dark">${oferta.descripcion}</p>
+                <p class="text-sm font-semibold text-gray-600">${oferta.vigencia}</p>
+                <div class="flex justify-center mt-4 space-x-4">
+                 
+                </div>
+            `;
+            carrusel.classList.remove('opacity-0'); // Muestra suavemente
+        }, 700);
+    }
+
+    function cambiarOferta(direccion) {
+        indiceOferta = (indiceOferta + direccion) % ofertas.length;
+        if (indiceOferta < 0) {
+            indiceOferta = ofertas.length - 1;
+        }
+        actualizarOferta();
+    }
+    
+    // Rotar ofertas automáticamente cada 15 segundos
+    setInterval(() => cambiarOferta(1), 15000);
+
+
+    /* ---------- Mostrar formulario según producto (Actualizado con clases Tailwind) ---------- */
+    function mostrar(tipo) {
+        document.getElementById('gatito-container').classList.add('hidden');
+        document.getElementById('formulario-container').classList.remove('hidden');
+
+        const titulo = document.getElementById('tituloPedido');
+        const precio = document.getElementById('precio');
+        const cantidad = document.getElementById('cantidad');
+        const img = document.getElementById('imgProducto');
+        const mensaje = document.getElementById('mensaje');
+
+        cantidad.value = 1;
+        mensaje.textContent = "";
+
+        switch (tipo) {
+            case 'brownieNormal':
+                titulo.innerHTML = "🍫 Brownie Normal";
+                precio.textContent = "Precio: $3000 c/u";
+                document.getElementById('precioUnit').value = 3000;
+                cantidad.max = 40;
+                img.src = "https://i.postimg.cc/Xq0YPw60/brownie-normal-sin-chips-de-colores.jpg";
+                break;
+            case 'brownieColores':
+                titulo.innerHTML = "🌈 Brownie Arcoíris";
+                precio.textContent = "Precio: $3200 c/u";
+                document.getElementById('precioUnit').value = 3200;
+                cantidad.max = 40;
+                img.src = "https://i.postimg.cc/131QP98y/brownie-animado-con-chips-de-colores-peque-os.jpg";
+                break;
+            case 'brownieChoco':
+                titulo.innerHTML = "🍫 Brownie con chips de chocolate";
+                precio.textContent = "Precio: $3200 c/u";
+                document.getElementById('precioUnit').value = 3200;
+                cantidad.max = 40;
+                img.src = "https://i.postimg.cc/9Mbk3hvF/un-brownie-con-chips-de-chocolate.jpg";
+                break;
+            case 'brownieMix':
+                titulo.innerHTML = "✨ Brownie Mix";
+                precio.textContent = "Precio: $3500 c/u";
+                document.getElementById('precioUnit').value = 3500;
+                cantidad.max = 40;
+                img.src = "https://i.postimg.cc/m2LH2KWK/brownie-con-chips-de-chocolate-y-pepitas.jpg";
+                break;
+            case 'miaulletasNormales':
+                titulo.innerHTML = "🍪 Miaulletas Clásicas x5";
+                precio.textContent = "Precio: $3500 por bolsa";
+                document.getElementById('precioUnit').value = 3500;
+                cantidad.max = 20;
+                img.src = "https://i.postimg.cc/9fRx89Bb/galleta-circular-con-chips-de-chocolate-en.jpg";
+                break;
+            case 'miaulletasMix':
+                titulo.innerHTML = "🐾 Miaulletas mix con orejitas! x5";
+                precio.textContent = "Precio: $3700 por bolsa";
+                document.getElementById('precioUnit').value = 3700;
+                cantidad.max = 20;
+                img.src = "https://i.postimg.cc/Z5XjXRnL/solo-la-cabeza-de-una-galleta-en.jpg";
+                break;
+        }
+
+        actualizarTotal();
+        document.getElementById('formulario-container').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ---------- Actualiza el total mostrado ---------- */
+    function actualizarTotal() {
+        const totalElem = document.getElementById('total');
+        const mensaje = document.getElementById('mensaje');
+        const p = parseInt(document.getElementById('precioUnit').value) || 0;
+        let u = parseInt(document.getElementById('cantidad').value) || 1;
+        const cantidadElem = document.getElementById('cantidad');
+        const maxU = parseInt(cantidadElem.max) || maxUnidades;
+
+        if (u > maxU) {
+            mensaje.classList.remove('opacity-0');
+            mensaje.textContent = `⚠️ ¡Solo puedo hacer un máximo de ${maxU} unidades por pedido!`;
+            u = maxU;
+            cantidadElem.value = u;
+        } else {
+            mensaje.classList.add('opacity-0');
+            mensaje.textContent = "";
+        }
+
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        });
+
+        totalElem.classList.add('opacity-0');
+        setTimeout(() => {
+            totalElem.textContent = `💰 Costo: ${formatter.format(p * u)}`;
+            totalElem.classList.remove('opacity-0');
+        }, 200);
+    }
+
+    /* ---------- Navegación / Volver al catálogo ---------- */
+    function volver() {
+        document.getElementById('formulario-container').classList.add('hidden');
+        document.getElementById('gatito-container').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ---------- Carrito: Añadir ---------- */
+    function añadirAlCarrito() {
+        const titulo = document.getElementById('tituloPedido').textContent;
+        const precioUnit = parseInt(document.getElementById('precioUnit').value) || 0;
+        const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+
+        if (cantidad <= 0 || isNaN(precioUnit) || precioUnit === 0) {
+             const mensaje = document.getElementById('mensaje');
+             mensaje.classList.remove('opacity-0');
+             mensaje.textContent = "Por favor, selecciona una cantidad válida.";
+             return;
+        }
+
+        const producto = { titulo, precioUnit, cantidad };
+        carrito.push(producto);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarCarrito();
+        volver();
+    }
+
+    /* ---------- Carrito: Actualizar UI ---------- */
+    function actualizarCarrito() {
+        const lista = document.getElementById('listaCarrito');
+        const totalCarrito = document.getElementById('totalCarrito');
+        lista.innerHTML = "";
+        let total = 0;
+
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        });
+        
+        carrito.forEach((p, i) => {
+            const li = document.createElement('li');
+            li.classList.add('flex', 'justify-between', 'items-center', 'text-base', 'text-gray-700', 'p-1', 'bg-pink-50/50', 'rounded-lg');
+            
+            const itemTotal = p.precioUnit * p.cantidad;
+            total += itemTotal;
+            
+            li.innerHTML = `
+                <span>${p.titulo.replace("Precio: ", "")} x${p.cantidad}</span>
+                <span class="font-bold text-pink-600">${formatter.format(itemTotal)} 
+                    <button class="eliminarBtn bg-red-500 hover:bg-red-600 text-white font-bold text-xs p-1 rounded-md ml-2 transition duration-200" onclick="eliminar(${i})">
+                        X
+                    </button>
+                </span>
+            `;
+            lista.appendChild(li);
+        });
+        
+        totalCarrito.textContent = `💰 Total a pagar: ${formatter.format(total)}`;
+        
+        const btnComprar = document.getElementById('btnComprar');
+        if (carrito.length > 0) {
+            btnComprar.style.display = 'inline-block';
+        } else {
+            btnComprar.style.display = 'none';
+        }
+    }
+
+    /* ---------- Carrito: Eliminar ---------- */
+    function eliminar(index) {
+        carrito.splice(index, 1);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarCarrito();
+    }
+
+    /* ---------- Lógica de Compra: Pasa al Modal de Revisión ---------- */
+    function comprarTodo() {
+        if (carrito.length === 0) {
+            const totalCarrito = document.getElementById('totalCarrito');
+            totalCarrito.textContent = "⚠️ ¡Ups! Carrito Vacío. ¡Añade lo que quieras comprar!";
+            totalCarrito.classList.add('text-red-500', 'animate-pulse');
+            setTimeout(() => {
+                actualizarCarrito();
+                totalCarrito.classList.remove('text-red-500', 'animate-pulse');
+            }, 3000);
+            return;
+        }
+
+        // Llenar el modal de revisión
+        const listaReview = document.getElementById('listaReview');
+        const totalReview = document.getElementById('totalReview');
+        listaReview.innerHTML = "";
+        let total = 0;
+
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        });
+
+        carrito.forEach((p) => {
+            const itemTotal = p.precioUnit * p.cantidad;
+            total += itemTotal;
+            
+            const li = document.createElement('li');
+            li.classList.add('flex', 'justify-between');
+            li.innerHTML = `<span>${p.titulo.replace("Precio: ", "")} x ${p.cantidad}</span> <span class="font-extrabold">${formatter.format(itemTotal)}</span>`;
+            listaReview.appendChild(li);
+        });
+        
+        totalReview.textContent = `Total a Pagar: ${formatter.format(total)}`;
+
+        // Mostrar modal de revisión
+        mostrarModalReview();
+    }
+
+    /* ---------- Enviar Pedido por WhatsApp (Llamado desde el modal de revisión) ---------- */
+    function enviarPedidoWhatsApp() {
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        });
+
+        let total = 0;
+        let mensaje = "Hola Lau! Soy (tu nombre). Quisiera pedirte esto:\n\n";
+        
+        carrito.forEach((p, i) => {
+            const itemTotal = p.precioUnit * p.cantidad;
+            total += itemTotal;
+            // Usamos un formato más amigable
+            mensaje += `${i + 1}. ${p.titulo} - ${p.cantidad} unidades - ${formatter.format(itemTotal)}\n`;
+        });
+
+        mensaje += `\nTotal del pedido: ${formatter.format(total)}`;
+        mensaje += `\n\n Dime cuánto es el domicilio y te envío el Nequi. Gracias, Lau!`;
+        
+        const linkWhatsApp = `https://wa.me/57${3137401568}?text=${encodeURIComponent(mensaje)}`;
+        
+        // 1. Abre WhatsApp para enviar el pedido
+        window.open(linkWhatsApp, '_blank');
+        
+        // 2. Cierra el modal de revisión y muestra el modal de pago
+        cerrarModalReview();
+        mostrarModalPago(); 
+    }
+
+    /* ---------- Modales UI ---------- */
+    function mostrarModalReview() {
+        const modal = document.getElementById('modalReview');
+        const modalContent = modal.querySelector('.modal-contenido');
+        
+        modal.classList.remove('pointer-events-none', 'opacity-0');
+        modal.classList.add('opacity-100');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+    }
+
+    function cerrarModalReview() {
+        const modal = document.getElementById('modalReview');
+        const modalContent = modal.querySelector('.modal-contenido');
+        
+        modal.classList.remove('opacity-100');
+        modal.classList.add('pointer-events-none', 'opacity-0');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+    }
+
+    function mostrarModalPago() {
+        const modal = document.getElementById('modalPago');
+        const modalContent = modal.querySelector('.modal-contenido');
+        
+        modal.classList.remove('pointer-events-none', 'opacity-0');
+        modal.classList.add('opacity-100');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+    }
+
+    function cerrarModalPago() {
+        const modal = document.getElementById('modalPago');
+        const modalContent = modal.querySelector('.modal-contenido');
+        
+        modal.classList.remove('opacity-100');
+        modal.classList.add('pointer-events-none', 'opacity-0');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+    }
+</script>
+
+</body>
+</html>
